@@ -4,12 +4,11 @@ const { Chat } = require("../models/chat");
 
 const initializeSocket=(server)=>{
     
-    const io = new socket.Server(server, {
-        cors: {
-          origin: "http://3.93.182.39",  
-          credentials: true,
-        },
-      });
+    const io=socket(server,{
+      cors:{
+        origin:"*"
+      }
+    })
     
     io.on("connection",(socket)=>{
    socket.on("joinChat",({loggedUserId,targetUserId})=>{
